@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% include 'includes/snackbar.html' %}
+{% block content %}
+	  <section class="banner" data-scroll-index='0'>
+		  <div class="banner-overlay">
+			  <div class="container d-flex align-items-center justify-content-center " style="height:60vh;">
+				<div class="row">
+					<div class="col">
+						
+					</div>
+				</div>
+				  <div class="row">
+					  <div class="col-md-8 col-sm-12 d-lg-block d-none">
+						  <div class="banner-text">
+							  <h2 class="white">Student Management</h2>
+							  <p class="banner-text white">Manage your student efficiently with student management system.</p>
+						  </div>
+					  </div>
+					  <div class="col-md-4">
+						<div class="px-2 py-2 border border-radius bg-white shadow w-100" >
+
+							<form class=""action="/signin" method="post"  >
+								<div class="form-group">
+									<!-- Display flashed error messages -->
+									
+								</div>
+								<div class="form-group mt-4">
+									<input type="text" class="form-input w-100 border" name="username" id="username" placeholder="Username" required>
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-input w-100 border" name="password" id="password" placeholder="Password" required>
+								</div>
+								<div class="form-group">
+									<button class="btn-grad w-100 text-uppercase" type="submit" name="button">Sign In</button>
+								</div>
+							</form>
+						</div>
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+		  <span class="svg-wave d-lg-block d-none"> <img class="svg-hero" src="{{ url_for('static', filename='images/applight-wave.svg') }}"> </span>
+	  </section>
+{% endblock %}

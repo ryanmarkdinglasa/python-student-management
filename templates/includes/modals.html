@@ -1,0 +1,225 @@
+<div class="modal fade" id="add-student" tabindex="-1" role="dialog" aria-labelledby="add-student" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered " role="document">
+      <div class="modal-content">
+        <div class="modal-body p-0">
+          <div class="card border-0 mb-0" >
+            <form action="/add_student" role="form" method="POST">
+                <div id="record_shot">
+                    <div class="card-body px-lg-2 py-lg-2" style="height: 80%;">
+                        <div class="sectioner-header text-center white">
+                            <h5 class="texts-primary">New Student</h5>
+                            <span class="line"></span>
+                        </div>
+                        <div class="form-group d-flex align-items-center justify-content-center">
+                            <div id="my_camera"></div>
+                        </div>
+                        <div class="form-group mt-4">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">ID No.:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-input w-100 border" name="idno" id="idno" placeholder="Enter Id number.." required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">First Name:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-input w-100 border" name="firstname" id="firstname" placeholder="Enter first name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">Last Name:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-input w-100 border" name="lastname" id="lastname" placeholder="Enter last name" required>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">Course:</label>
+                                </div>
+                                <div class="col">
+                                    <select name="course" id="course" class="form-control border border-round w-100" required>
+                                        <option value="" class="text-muted">Select Course</option>
+                                        <option value="bsit">BSIT</option>
+                                        <option value="bsis">BSIS</option>
+                                        <option value="bsim">BSIM</option>
+                                        <option value="bscs">BSCS</option>
+                                        <option value="bscpe">BSCPE</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">Year Level:</label>
+                                </div>
+                                <div class="col">
+                                    <select name="level" id="level" class="form-control border border-round  w-100" required>
+                                        <option value="" class="texts-muted">Select Year level</option>
+                                        <option value="1">First Year</option>
+                                        <option value="2">Second Year</option>
+                                        <option value="3">Third Year</option>
+                                        <option value="4">Fourth Year</option>	
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer py-2">
+                        <button class="btn-grad w-100 text-uppercase" type="button" onclick="take_snapshot();display();">
+                            <svg class="fill-white" height="16" width="16" viewBox="0 0 512 512">
+                                <path d="M149.1 64.8L138.7 96H64C28.7 96 0 124.7 0 160V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V160c0-35.3-28.7-64-64-64H373.3L362.9 64.8C356.4 45.2 338.1 32 317.4 32H194.6c-20.7 0-39 13.2-45.5 32.8zM256 192a96 96 0 1 1 0 192 96 96 0 1 1 0-192z"/>
+                            </svg>
+                            <span>Take Snapshot</span> 
+                        </button>
+                    </div>
+                </div>
+                <div id="record_display" class="" style="display:none;">
+                    <div class="card-body px-lg-2 py-lg-2" style="height: 80%;">
+                        <div class="sectioner-header text-center white">
+                            <h5 class="texts-primary">New Student</h5>
+                            <span class="line"></span>
+                        </div>
+                        <div class="form-group d-flex align-items-center justify-content-center">
+                            <div  id="result"></div> <!--DISPLAY TAKEN PHOTO-->
+                        </div>
+                        <div class="form-group mt-4">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">ID No.:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-input w-100 border" name="myidno" id="myidno" placeholder="Enter Id number.." required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">First Name:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-input w-100 border" name="myfirstname" id="myfirstname" placeholder="Enter first name" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">Last Name:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-input w-100 border" name="mylastname" id="mylastname" placeholder="Enter last name" required>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">Course:</label>
+                                </div>
+                                <div class="col">
+                                    <select name="mycourse" id="mycourse" class="form-control border border-round w-100" required>
+                                        <option value="" class="text-muted">Select Course</option>
+                                        <option value="bsit">BSIT</option>
+                                        <option value="bsis">BSIS</option>
+                                        <option value="bsim">BSIM</option>
+                                        <option value="bscs">BSCS</option>
+                                        <option value="bscpe">BSCPE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-2 d-flex align-items-center justify-content-end">
+                                    <label class="texts-primary ml-3  mb-0">Year Level:</label>
+                                </div>
+                                <div class="col">
+                                    <select name="level" id="mylevel" class="form-control border border-round  w-100" required>
+                                        <option value="" class="texts-muted">Select Year level</option>
+                                        <option value="1">First Year</option>
+                                        <option value="2">Second Year</option>
+                                        <option value="3">Third Year</option>
+                                        <option value="4">Fourth Year</option>	
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer py-2">
+                        <button class="btn-grad w-100 text-uppercase" type="button" onclick="save_snapshot()">
+                            <svg class="fill-white" height="16" width="14" viewBox="0 0 448 512">
+                                <path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+                            </svg>
+                            <span>Save</span> 
+                        </button>
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='webcam.min.js') }}"></script>
+<script>
+     Webcam.set({
+        width: 220,
+        height: 140,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+    Webcam.attach("#my_camera");
+    function take_snapshot() {
+    Webcam.snap(function(data_uri) {
+        document.getElementById('result').innerHTML = "<img id='imageprev' src='" + data_uri + "'>";
+        document.getElementById('myidno').value = document.getElementById('idno').value;
+        document.getElementById('mylastname').value = document.getElementById('lastname').value;
+        document.getElementById('myfirstname').value = document.getElementById('firstname').value;
+        document.getElementById('mycourse').value = document.getElementById('course').value;
+        document.getElementById('mylevel').value = document.getElementById('level').value;
+    });
+}
+
+function save_snapshot(){
+        var base64image=document.getElementById('imageprev').src;
+        var idno= document.getElementById('idno').value;
+        var lastname= document.getElementById('lastname').value;
+        var firstname= document.getElementById('firstname').value;
+        var course= document.getElementById('course').value;
+        var level= document.getElementById('level').value;
+        Webcam.upload(base64image,"upload?idno="+idno+"&lastname="+lastname+"&firstname="+firstname+"&course="+course+
+        "&level="+level,function(code,name){
+            document.getElementById('idno').value='';
+            document.getElementById('lastname').value='';
+            document.getElementById('firstname').value='';
+            document.getElementById('course').value='';
+            document.getElementById('level').value='';
+            document.getElementById('idno').focus='';  
+            location.reload();
+        });
+       
+    }
+function display() {
+    document.getElementById('record_shot').style.display = "none";
+    document.getElementById('record_display').style.display = "block";
+}
+
+</script>
+

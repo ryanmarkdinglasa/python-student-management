@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block pageheader %}Sign Up{% endblock %}
+{% block content %}
+
+	<div class=" log-container w3-panel w3-animate-top">
+		<div class=" border-radius w3-container  w3-card-4">
+			{% if mess!="#" %}
+			<div class=" border-radius w3-khaki w3-panel w3-center w3-animate-right">
+				{{ mess }}
+			</div>
+			{% endif %}
+			<form class="" action="/signup_user" method="POST" >
+				<p>
+					<input type="text" class="border-radius w3-input w3-border" name="s_username" id="s_username" placeholder="Username" required>
+				</p>
+				<p>
+					<input type="password" class=" border-radius w3-input w3-border" name="s_password" id="s_password" placeholder="Password" required>
+				</p>
+				<p>
+					<b>
+						<input type="submit" class="btn border-radius w3-button w3-indigo" value="Sign Up" style="width:100%;">
+					</b>
+				</p>	
+					<hr>
+					<center>
+						<small>Already have an account?<a href="/" style="text-decoration:none;color:grey;"> Sign In</small>
+					</center>
+				<br>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block title %}{{title}}{% endblock %}
+{% block pageheader %}{{title | upper}}{% endblock %}
+{% block menubar %}
+	<div class=" nav w3-bar w3-indigo">
+		<button onclick="logout()" class="btn btn-radius logout w3-button w3-right w3-white" >Log Out</button>
+	</div>
+{% endblock %}
+{% block content %}
+	<button class="btn btn-radius w3-button w3-indigo" onclick="addrecord()">+ ADD</button>
+	<div class="search-bar">
+		<form action="/studentlist/search" action="POST" name="searchform" >
+			<input type="text" class=" border-radius w3-input w3-border" name="search" id="search" placeholder="Search..." required>
+			<select class="w3-select w3-border btn-radius" name="table" id="table" required>
+				<option value = "idno">ID Number</option>
+				<option value = "firstname">First Name</option>
+				<option value = "lastname">Last Name</option>
+				<option value = "course">Course</option>
+				<option value = "level">Year Level</option>
+			</select>
+			<input type="submit" onclick="search()" class="btn btn-radius w3-button w3-indigo" value="Search">
+		</form>
+	</div>
+	<p>
+		<!--messaging panel-->
+		{% if message!="ok" %}
+		<div class="w3-panel w3-khaki w3-right w3-animate-right">
+			<h4>
+				{{ message }}
+			</h4> 
+		</div>
+		{% endif %}
+	</p>
+	<table class="w3-table-all">
+		<tr>
+			{% for h in pageheader %}
+				<th>{{ h | upper }}</th>
+			{% endfor %}
+		</tr>
+		{% for student in studentlist | sort(attribute='lastname') %}
+		<tr>
+			{% for key,value in student.items() %}
+			<td>
+				{{ value | upper }}
+			</td>
+			{% endfor %}
+			
+			<td>
+				<button onclick="deleterecord('{{student['idno']}}')">&times;</button>
+				<button onclick="editrecord('{{student['idno']}}','{{student['lastname']}}','{{student['firstname']}}','{{student['course']}}','{{student['level']}}')">&#9998;</button>
+			</td>
+			
+		</tr>
+		{% endfor %}
+	</table>
+	<div class="w3-modal" id ="studentmodal"> 
+		<div class = "w3-modal-content w3-animate-top">
+			<div class = "w3-container w3-blue">
+				<h3>Student Record</h3>
+				<button class="w3-button w3-display-topright" onclick="document.getElementById('studentmodal').style.display='none'">&times;</button>
+			</div>
+			<div class="w3-container">
+				<form action="/addstudent" method="POST" name="studentform">
+					<p>
+						<label>IDNO</label>
+						<input type="number" class="w3-input w3-border"  name="idno" id="idno" required>
+					</p>
+					<p>
+						<label>LASTNAME</label>
+						<input type="text" class="w3-input w3-border" name="lastname" id="lastname" required>
+					</p>
+					<p>
+						<label>FIRSTNAME</label>
+						<input type="text" class="w3-input w3-border" name="firstname" id="firstname" required>
+					</p>
+					<p>
+						<label>COURSE</label>
+						<select class="w3-select w3-border" name="course" id="course" required>
+							<option value = ""></option>
+							<option value = "bsit">INFORMATION TECHNOLOGY</option>
+							<option value = "bsis">INFORMATION SYSTEMS</option>
+							<option value = "bscpe">COMPUTER ENGINEERING</option>
+							<option value = "bscs">COMPUTER SCIENCE</option>
+						</select>
+					</p>
+					<p>
+						<label>LEVEL</label>
+						<input type="number" class="w3-select w3-border" name="level" id="level" required>
+					</p>
+					<p>
+						<input class="w3-button w3-border w3-blue" type="submit" value="Save">
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="w3-modal" id ="u_studentmodal"> 
+		<div class = "w3-modal-content w3-animate-top">
+			<div class = "w3-container w3-blue">
+				<h3>Student Record</h3>
+				<button class="w3-button w3-display-topright" onclick="document.getElementById('u_studentmodal').style.display='none'">&times;</button>
+			</div>
+			<div class="w3-container">
+				<form action="/updatestudent" method="POST" name="u_studentform">
+					<p>
+						<label>IDNO</label>
+						<input type="number" class="w3-input w3-border" style="background:#f0f0f0"name="u_idno" id="u_idno" readonly>
+					</p>
+					<p>
+						<label>LASTNAME</label>
+						<input type="text" class="w3-input w3-border" name="u_lastname" id="u_lastname" required>
+					</p>
+					<p>
+						<label>FIRSTNAME</label>
+						<input type="text" class="w3-input w3-border" name="u_firstname" id="u_firstname" required>
+					</p>
+					<p>
+						<label>COURSE</label>
+						<input type="text" class="w3-select w3-border" name="u_course" id="u_course" required>
+					</p>
+					<p>
+						<label>LEVEL</label>
+						<input type="number" class="w3-select w3-border" name="u_level" id="u_level" required>
+					</p>
+					<p>
+						<input class="w3-button w3-border w3-blue" type="submit" value="Save">
+					</p>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}

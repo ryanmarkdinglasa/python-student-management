@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% include 'includes/navbar.html' %}
+{% include 'includes/snackbar.html' %}
+{% block content %}
+<section class="testimonial section-padding" data-scroll-index='0'>
+	<div class="container">
+	  	<div class="row">
+			<div class="col-md-12">
+				<div class="sectioner-header text-center white">
+					<h3>Students</h3>
+					<span class="line"></span>
+					<p class="white">The list of enrolled individuals within the institution.</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col mb-3 px-0">
+				<div class="offset-md-2 col-md-8 col-sm-12 align-items-center d-flex justify-content-center  px-2">
+					<button title="New Student" class="btn bg-none rounded-circle btn-circle border align-items-center d-flex justify-content-center"  data-toggle="modal" data-target="#add-student">
+						<svg class="fill-white" height="2rem" viewBox="0 0 448 512">
+							<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+						</svg>
+					</button>
+					<form action="/search_student" method="POST" class="w-100 d-flex align-items-center justify-content-end">
+						<input type="text" class="form-input w-100 ml-3" name="search" id="search" placeholder="Enter keywords...">
+						<button type="submit" class="position-absolute mr-1 btn btn-sm btn-circle rounded-circle border-primarys align-items-center d-flex justify-content-center" name="submit_search" id="submit_search" style="z-index: 1;width:35px;height: 35px; margin:-30px 0px;">
+							<svg class="fill-primary" height="16" width="16" viewBox="0 0 512 512">
+								<path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+							</svg>
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		{% for student in student_list | sort(attribute='lastname') %}
+		
+		<div class="row mb-2">
+			<!--LOOP HERE-->
+			<div class="col">
+				<div class="offset-md-2 col-md-8 col-sm-12   border-radius py-2 bg-lighter">
+					<div class="slider ">
+						<div class="slider-item">
+							<div class="row ">
+								<div class="col  d-flex align-items-center justify-content-end" style="z-index: 1;">
+									<div class="dropdown">
+										<button class="btn btn-sm  rounded-circle btn-option" type="button"   id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+											<svg class="" height="1rem" viewBox="0 0 448 512">
+												<path d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z"/>
+											</svg>
+										</button>
+										<ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="dropdownMenuButton">
+											<li>
+												<a class="dropdown-item hover-option d-flex align-items-center" href="#">
+													<svg class="fill-primary" height="16" width="16" viewBox="0 0 512 512">
+														<path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/>
+													</svg>
+													<span class="ml-2">Edit</span> 
+												</a>
+											</li>
+											<li>
+												<a class="dropdown-item hover-option" href="#" data-toggle="modal" data-target="#delete-student{{student.id}}">
+													<svg class="fill-primary" height="16" width="16" viewBox="0 0 448 512">
+														<path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+													</svg>
+													<span class="ml-1">Delete</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>				
+							</div>
+							<div class="row  d-flex align-items-center justify-content-center " style="height:150px; margin-top:-30px;">
+								<div class="col-3">
+									<div class="d-flex align-items-center justify-content-center">
+										<img class="rounded-circle avatar border-white-10" style="height: 130px; width: 130px;" src="../{{ student.images }}" alt="{{student.images}}" title="{{student.images}}">
+									</div>
+								</div>
+								<div class="col-9 px-0">
+									<div class=" w-100 px-3">
+										<span class="title">
+											<span class="">{{ student.firstname| upper +' '+student.lastname | upper }}</span>
+											<small class="texts-primary">{{ student.idno | upper }}</small>
+											<small>{{ student.course | upper +'-'+student.level | upper }}</small>
+										</span>
+										<p>Consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam eratvo lutpat.</p>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="modal fade " id="delete-student{{student.id}}" tabindex="-1" role="dialog" aria-labelledby="delete-student{{student.id}}" aria-hidden="true">
+									<div class="modal-dialog modal-md modal-dialog-centered " role="document">
+									  <div class="modal-content">
+										<div class="modal-body p-0">
+										  <div class="card border-0 mb-0" >
+												<div class="card-body px-lg-2 py-lg-2" style="height: 80%;">
+													<div class="sectioner-header text-center white">
+														<h5 class="texts-primary">Delete Student</h5>
+														<span class="line"></span>
+													</div>
+													<div class="form-group mt-4">
+														<div class="row">
+															<div class="col d-flex align-items-center justify-content-center">
+																<svg class="fill-primary" height="2rem" viewBox="0 0 512 512">
+																  <path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>
+																</svg>
+																<label class="texts-primary ml-3  mb-0">Are you sure to delete this student?</label>
+															</div>
+														</div>
+													</div>
+												<div class="card-footer py-2 d-flex align-items-center justify-content-end">
+													<button class="btn-grad text-uppercase" type="button" onclick="window.location.href='/delete_student?id={{student.id}}'">
+														<svg class="fill-white" height="16" width="16" viewBox="0 0 448 512">
+															<path d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z"/>
+														</svg>
+														<span class="ml-1 text-white">Delete</span>
+													</button>
+												</div>
+										  </div>
+										</div>
+									  </div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<!--LOOP HERE-->
+	  	</div>
+		{% endfor %}
+	</div>
+</section>
+{% include 'includes/modals.html' %}
+{% endblock %}
