@@ -7,6 +7,7 @@ Student Management System with Camera
 
 ## Simple Python Project 
 To start, install the environment
+* restore the database
 * open to venv
 * cd scripts
 * activate
